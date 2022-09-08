@@ -15,7 +15,7 @@ var (
 )
 
 // ConnectMongoDB function connect mongodb
-func ConnectMongoDB(uri, database string) {
+func ConnectMongoDB(uri, database string) *mongo.Database {
 	clientOptions := options.Client().ApplyURI(uri)
 	// Connect to MongoDB
 	client, err := mongo.Connect(context.TODO(), clientOptions)
@@ -29,6 +29,7 @@ func ConnectMongoDB(uri, database string) {
 	}
 	cli = client
 	db = client.Database(database)
+	return db
 }
 
 // GetDB func
